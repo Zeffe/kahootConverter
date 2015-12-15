@@ -15,12 +15,15 @@ try:
 
 	url2.close()
 	
-	newData = data.split("<span class='TermText qDef lang-en'>")[1].split("</span>")[0]
+	qData = data.split("<span class='TermText qDef lang-en'>")[1].split("</span>")[0]
+	aData = data.split("<span class='TermText qWord lang-en'>")[1].split("</span>")[0]
 except:
 	print ("Invalid URL")
 	raw_input()
 	exit()
 
-print newData
+print qData
+print ""
+print aData
 
 raw_input()
