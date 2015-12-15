@@ -16,7 +16,7 @@ try:
 	url2.close()
 	
 	qData = data.split("<span class='TermText qDef lang-en'>")[1].split("</span>")[0]
-	aData = data.split("<span class='TermText qWord lang-en'>")[1].split("</span>")[0]
+	aData = data.split("<span class='TermText qWord lang-en'>")[1].split("<\/span>")[0]
 except:
 	print ("Invalid URL")
 	raw_input()
