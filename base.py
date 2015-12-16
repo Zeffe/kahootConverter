@@ -28,12 +28,14 @@ except:
 
 aData = data.split("<span class='TermText qWord lang-en'>")
 qData = data.split("<span class='TermText qDef lang-en'>")
+title = data.split("<title>Test: ")[1].split(" | Quizlet</title>")[0]
 
 count = 0
+print title
 for i in range(1, len(qData)):
         print "[Q" + str(i) + "]" + qData[i].split("</span>")[0]
         count = 0
-	for j in range(1, 5):
+        for j in range(1, 5):
                 count += 1
                 print "[A" + str(j) + "]" + aData[i + count].split("</span>")[0]
 raw_input()
