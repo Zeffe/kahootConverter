@@ -4,12 +4,14 @@ class Base():
         def __init__(self):
                 print "Kahoot Converter v1"
                 print "\"What a shitty name\""
+		self.url = {"testURL":"https://quizlet.com/110838121/test"}
 base = Base()
 
 try:
         # Get URL from user input.
-        url = raw_input("URL:")
-
+        #url = raw_input("URL:")
+	url = base.url["testURL"]
+	
         # Open the given URL on url2.
         url2 = urllib.urlopen(url)
 
@@ -30,9 +32,11 @@ except:
         raw_input()
         exit()
 
-nudata = data.split("qWord")
-for i in nudata:
-        print i
+print data
+raw_input()
+nudata = data.split("<span class='TermText qWord lang-en'>")
+for i in range(3, 50):	
+	print "[" + str(i) + "]" + nudata[i].split("</span>")[0]
 raw_input()
 
 while True:
