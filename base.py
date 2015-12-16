@@ -89,5 +89,5 @@ for i in range(1, len(qData)):
                 print "\t" + nuString
                 a += 1
 #login()
-print str(correct)
+
 raw_input()
