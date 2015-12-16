@@ -1,10 +1,10 @@
 import urllib
-from requests import session
+#import requests
 
 class Base():
         def __init__(self):
                 print "Kahoot Converter v1"
-                print "\"What a shitty name\""
+                print "\"Wowzers!\""
                 self.url = {"testURL":"https://quizlet.com/110838121/test?mult_choice=on&prompt-with=1&limit=40"}
 base = Base()
 
@@ -39,8 +39,10 @@ def login():
 
 try:
         # Get URL from user input.
-        #url = raw_input("URL:")
-        url = base.url["testURL"]
+        url = raw_input("URL:")
+        
+        if url == "test":
+                url = base.url["testURL"]
         
         # Open the given URL on url2.
         url2 = urllib.urlopen(url)
@@ -56,17 +58,26 @@ except:
         raw_input()
         exit()
 
+# Split the html at the question identifiers.
 aData = data.split("<span class='TermText qWord lang-en'>")
+# Split the html at the answer identifiers.
 qData = data.split("<span class='TermText qDef lang-en'>")
+# Get the title of the quizlet as a string.
 title = data.split("<title>Test: ")[1].split(" | Quizlet</title>")[0]
 
-count = 0
 print title
+
+# Loop for each member of the list.
 for i in range(1, len(qData)):
+        # Print the question with question number.
         print "[Q" + str(i) + "]" + qData[i].split("</span>")[0]
+        # Set count to 0, used for answer numbers.
         count = 0
+        # Loop 4 times, once for each answer.
         for j in range(1, 5):
+                # Add one to count in order to read correct data.
                 count += 1
+                # Print the answer with numbers 1-4.
                 print "[A" + str(j) + "]" + aData[i + count].split("</span>")[0]
-login()
+#login()
 raw_input()
