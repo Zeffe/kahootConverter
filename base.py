@@ -84,10 +84,10 @@ for i in range(1, len(qData)):
         for j in range(1, 5):
                 # Print the answer with numbers 1-4.
                 nuString = "[A" + str(j) + "]" + aData[i + j].split("</span>")[0]
-		if "='1'" in aData[i + j].split("value")[1]:
-			nuString = nuString + "@CORRECT" 
-                print nuString
-                correct += 1
+                if "='1'" in aData[i + j].split("value")[1]:
+                        nuString = nuString + "@CORRECT"
+                        correct += 1
+                print "\t" + nuString
 #login()
 print str(correct)
 raw_input()
