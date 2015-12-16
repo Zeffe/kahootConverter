@@ -74,7 +74,7 @@ title = data.split("<title>Test: ")[1].split(" | Quizlet</title>")[0]
 
 print title
 
-correct = 0
+a = 1
 
 # Loop for each member of the list.
 for i in range(1, len(qData)):
@@ -83,11 +83,11 @@ for i in range(1, len(qData)):
         # Loop 4 times, once for each answer.
         for j in range(1, 5):
                 # Print the answer with numbers 1-4.
-                nuString = "[A" + str(j) + "]" + aData[i + j].split("</span>")[0]
-                if "='1'" in aData[i + j].split("value")[1]:
+                nuString = "[A" + str(j) + "]" + aData[a].split("</span>")[0]
+                if "value='1'" in aData[a - 1]:
                         nuString = nuString + "@CORRECT"
-                        correct += 1
                 print "\t" + nuString
+                a += 1
 #login()
 print str(correct)
 raw_input()
