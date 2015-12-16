@@ -37,26 +37,33 @@ def login():
 #        r = session.get('https://create.kahoot.it/?_ga=1.74582866.1723042493.1450152659&deviceId=36a26ec0-9c01-4508-842a-c568568d5d85#quiz/685130be-26c5-48d2-a376-ec7c0b656e03/edit')
 #        print r
 
-try:
-        # Get URL from user input.
-        url = raw_input("URL:")
-        
-        if url == "test":
-                url = base.url["testURL"]
-        
-        # Open the given URL on url2.
-        url2 = urllib.urlopen(url)
+firstLoop = True
+while firstLoop:
+        try:
+                # Get URL from user input.
+                url = raw_input("URL:")
+                
+                if url == "test":
+                        url = base.url["testURL"]
+                
+                # Open the given URL on url2.
+                url2 = urllib.urlopen(url)
 
-        # Read the data from the url to 'data'
-        data = url2.read()
+                # Read the data from the url to 'data'
+                data = url2.read()
 
-        # Close the url.
-        url2.close()
-except:
-        # Exit if an error occurs.
-        print ("Invalid URL")
-        raw_input()
-        exit()
+                title = data.split("<title>Test: ")[1].split(" | Quizlet</title>")[0]
+                
+                # Close the url.
+                url2.close()
+
+                confirm = raw_input("Read from Quizlet: " + title + " (Y/N):")
+                if confirm == "Y":
+                        firstLoop = False
+        except:
+                # Exit if an error occurs.
+                print ("Invalid URL")
+                raw_input()
 
 # Split the html at the question identifiers.
 aData = data.split("<span class='TermText qWord lang-en'>")
