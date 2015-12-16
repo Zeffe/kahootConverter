@@ -1,4 +1,5 @@
 import urllib
+from requests import session
 
 class Base():
         def __init__(self):
@@ -6,6 +7,35 @@ class Base():
                 print "\"What a shitty name\""
                 self.url = {"testURL":"https://quizlet.com/110838121/test?mult_choice=on&prompt-with=1&limit=40"}
 base = Base()
+
+def login():
+        username = raw_input("Kahoot User: ")
+        password = raw_input("Kahoot Pass: ")
+
+        login_data = {'action': 'login', 'username' : username, 'password': password}
+
+        with session() as c:
+                c.post('https://create.kahoot.it/?_ga=1.134240756.405763457.1450244410&deviceId=416f204e-7f4f-4f88-a547-524c3e96541a#login?next=', login_data)
+                response = c.get('https://create.kahoot.it/?_ga=1.74582866.1723042493.1450152659&deviceId=36a26ec0-9c01-4508-842a-c568568d5d85#quiz/685130be-26c5-48d2-a376-ec7c0b656e03/edit')
+                print(response.headers)
+                print(response.text)
+        
+
+#def login():
+#        logUrl = "https://getkahoot.com/"
+#        session = requests.session()
+#        kUser = raw_input("Kahoot User: ")
+#        kPass = raw_input("Kahoot Pass: ")
+#        email = ''
+#        password = ''
+#        login_data = {
+#                kUser : email,
+#                kPass : password,
+#                'submit' : 'login',
+#                }
+#        r = session.post(url, data=login_data)
+#        r = session.get('https://create.kahoot.it/?_ga=1.74582866.1723042493.1450152659&deviceId=36a26ec0-9c01-4508-842a-c568568d5d85#quiz/685130be-26c5-48d2-a376-ec7c0b656e03/edit')
+#        print r
 
 try:
         # Get URL from user input.
@@ -38,4 +68,5 @@ for i in range(1, len(qData)):
         for j in range(1, 5):
                 count += 1
                 print "[A" + str(j) + "]" + aData[i + count].split("</span>")[0]
+login()
 raw_input()
