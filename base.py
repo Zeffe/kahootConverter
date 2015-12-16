@@ -58,7 +58,7 @@ while firstLoop:
                 url2.close()
 
                 confirm = raw_input("Read from Quizlet: " + title + " (Y/N):")
-                if confirm == "Y":
+                if confirm.lower() == "y":
                         firstLoop = False
         except:
                 # Exit if an error occurs.
@@ -83,10 +83,11 @@ for i in range(1, len(qData)):
         # Loop 4 times, once for each answer.
         for j in range(1, 5):
                 # Print the answer with numbers 1-4.
-                print "[A" + str(j) + "]" + aData[i + j].split("</span>")[0]
-                if "value='1'" in aData[i + j + 1]:
-                        print "CORRECT"
-                        correct += 1
+                nuString = "[A" + str(j) + "]" + aData[i + j].split("</span>")[0]
+		if "='1'" in aData[i + j].split("value")[1]:
+			nuString = nuString + "@CORRECT" 
+                print nuString
+                correct += 1
 #login()
 print str(correct)
 raw_input()
